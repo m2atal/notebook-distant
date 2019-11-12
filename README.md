@@ -12,22 +12,50 @@ Explications du comment faire pour utiliser des notebooks jupyter en distanciell
 
 1. Copier le script `jupyter.sh` sur le gpue<X> voulu. *N.B: ne pas oublier de le rendre exécutable*
 
-## Utilisation à la fac
+## Utilisation
 
-### Pour les Manceaux 
+`user_lemans`: identifiant utilisateur le Mans.
+`user_nantes`: identifiant utilisateur Nantes.
+`port_notebook`: le port du notebook choisit.
+`<X>`: indique le numéro du gpu cible.
 
-1. (Si nécessaire) Lancer le script en distant `ssh -L <port_local>:gpue<X>:<port_notebook> <user>@tra './jupyter.sh <port_notebook>'`
-2. Lancer le port forwarding `ssh -L <port_local>:gpue<X>:<port_notebook> -N <user_lemans>@skinner`
+### A la fac
 
-### Pour les nantais
+#### Pour les Manceaux 
+  ________       _________       _______   
+ |        |     |         |     |       |  
+ |        |     |         |     |       |  
+ |  User  | ==> | Skinner | ==> |  GPU  |  
+ |        |     |         |     |       |  
+ |________|     |_________|     |_______|  
 
-1. Lance le port forward entre l'utilisateur et transit: `ssh -L <port_local>:transit.univ-lemans.fr:<port_transit> <user_nantes>@bastion.etu.univ-nantes.fr`
-2. (Si nécessaire)Lance le notebook depuis transit: `ssh -L <port_transit>:gpue<X>:<port_notebook> <user_lemans>@skinner './jupyter.sh <port_notebook>'`
-3. Lance le port forward entre transit et gpuX `ssh -L <port_transit>:gpue<X>:<port_notebook> <user>@skinner`
+1. Lancer le port forwarding: `ssh -L <port_notebook>:gpue<X>:<port_notebook> <user_lemans>@skinner`
+   
+#### Pour les nantais
+
+  ________       _________       _________       _________       _______ 
+ |        |     |         |     |         |     |         |     |       |
+ |        |     |         |     |         |     |         |     |       |
+ |  User  | ==> | Transit | ==> | Bastion | ==> | Skinner | ==> |  GPU  |
+ |        |     |         |     |         |     |         |     |       |
+ |________|     |_________|     |_________|     |_________|     |_______|
+
+1. Lancer le port forwarding: `ssh -L <port_notebook>:localhost:<port_notebook> <user_nantes>@bastion.etu.univ-nantes.fr -t ssh -L <port_notebook>:localhost:<port_notebook> <user_lemans>@skinner -t ssh -L <port_notebook>:localhost:<port_notebook> gpue<X>`
+
+### A la casa
+
+  ________       _________       _________       _______ 
+ |        |     |         |     |         |     |       |
+ |        |     |         |     |         |     |       |
+ |  User  | ==> | Transit | ==> | Skinner | ==> |  GPU  |
+ |        |     |         |     |         |     |       |
+ |________|     |_________|     |_________|     |_______|
+
+1. Lancer le port forwarding: `ssh -L <port_notebook>:localhost:<port_notebook> <user_lemans>@transit.univ-lemans.fr -t ssh -L <port_notebook>:localhost:<port_notebook> skinner -t ssh -L <port_notebook>:localhost:<port_notebook> gpue<X>`
 
 
-### Utilisation à la casa
+## N.B
 
-1. Lance le port forwarding entre l'utilisateur et skinner (nécessite de taper le mdp 2 fois ): `ssh -L <port_local>:skinner:<port_skinner> -A -t -l <user_lemans> transit.univ-lemans.fr ssh skinner`
-2. (Si nécessaire) Lance le notebook sur le port choisit: `ssh gpue<X> './jupyter.sh <port_notebook>`
-3. Lance le port forwarding entre skinner et le gpue<X>: `ssh -L <port_skinner>:localhost:<port_notebook> gpue<X>`
+* Dans le port forwarding je propose de mettre le même numéro de port par simplicité, il est possible de le changer entre chaque machine
+* Ajouter `-t './jupyter.sh <numero_port>'` à la fin du port forward pour démarrer le notebook *
+* Ajouter `-t './jupyter.sh stop'` à la fin du port forward pour stopper le notebook *
