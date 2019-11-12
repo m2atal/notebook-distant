@@ -1,13 +1,6 @@
 # notebook-distant
 Explications du comment faire pour utiliser des notebooks jupyter en distancielle
 
-## Informations
-
-* Pour lancer le notebook utiliser la commande suivante `./jupyter.sh <port_notebook>`
-* Pour stopper le notebook utiliser la commande suivante `./jupyter.sh stop`
-
-*N.B: Tant que vous ne stoppez pas le notebook avec la commande ci-dessus. celui-ci ne s'arrêtera pas sauf si les gpus sont restart. N'oubliez donc pas de les stoppez lorsque vous avez fini.*
-
 ## Installation 
 
 1. Copier le script `jupyter.sh` sur le gpue<X> voulu. *N.B: ne pas oublier de le rendre exécutable*
@@ -18,6 +11,14 @@ Explications du comment faire pour utiliser des notebooks jupyter en distanciell
 `user_nantes`: identifiant utilisateur Nantes.
 `port_notebook`: le port du notebook choisit.
 `<X>`: indique le numéro du gpu cible.
+
+
+Une fois connecté au GPU vous pouvez utiliser les commandes suivantes:
+
+* Pour lancer le notebook utiliser la commande suivante `./jupyter.sh <port_notebook>`
+* Pour stopper le notebook utiliser la commande suivante `./jupyter.sh stop`
+
+*N.B: Tant que vous ne stoppez pas le notebook avec la commande ci-dessus. celui-ci ne s'arrêtera pas sauf si les gpus sont restart. N'oubliez donc pas de les stoppez lorsque vous avez fini.*
 
 ### A la fac
 
