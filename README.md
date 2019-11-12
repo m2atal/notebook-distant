@@ -22,7 +22,7 @@ Explications du comment faire pour utiliser des notebooks jupyter en distanciell
 ### À la fac
 
 1. Lance le port forward entre l'utilisateur et transit: `ssh -L <port_local>:transit.univ-lemans.fr:<port_transit> <user_nantes>@bastion.etu.univ-nantes.fr`
-2. Lance le notebook depuis transit: `ssh -L <port_transit>:gpue<X>:<port_notebook> <user>@skinner './jupyter.sh <port_notebook>'`
+2. Lance le notebook depuis transit: `ssh -L <port_transit>:gpue<X>:<port_notebook> <user_lemans>@skinner './jupyter.sh <port_notebook>'`
 3. Lance le port forward entre transit et gpuX `ssh -L <port_transit>:gpue<X>:<port_notebook> <user>@skinner`
 
 
