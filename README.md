@@ -16,8 +16,8 @@ Explications du comment faire pour utiliser des notebooks jupyter en distanciell
 
 ### Pour les Manceaux 
 
-1. (Si nécessaire) Lancer le script en distant `ssh -L <port_local>:gpue3:<port_notebook> <user>@tra './jupyter.sh <port_notebook>'`
-2. Lancer le port forwarding `ssh -L <port_local>:gpue3:<port_notebook> -N s156053@skinner`
+1. (Si nécessaire) Lancer le script en distant `ssh -L <port_local>:gpue<X>:<port_notebook> <user>@tra './jupyter.sh <port_notebook>'`
+2. Lancer le port forwarding `ssh -L <port_local>:gpue<X>:<port_notebook> -N <user_lemans>@skinner`
 
 ### Pour les nantais
 
