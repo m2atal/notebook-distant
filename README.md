@@ -36,7 +36,7 @@ Explications du comment faire pour utiliser des notebooks jupyter en distanciell
 <pre>
  +--------+     +---------+     +---------+     +---------+     +-------+
  |        |     |         |     |         |     |         |     |       |
- |  User  | ==> | Transit | ==> | Bastion | ==> | Skinner | ==> |  GPU  |
+ |  User  | ==> | Bastion | ==> | Transit | ==> | Skinner | ==> |  GPU  |
  |        |     |         |     |         |     |         |     |       |
  +--------+     +---------+     +---------+     +---------+     +-------+
 </pre>
