@@ -22,40 +22,41 @@ Explications du comment faire pour utiliser des notebooks jupyter en distanciell
 ### A la fac
 
 #### Pour les Manceaux 
-  ________       _________       _______   
- |        |     |         |     |       |  
- |        |     |         |     |       |  
- |  User  | ==> | Skinner | ==> |  GPU  |  
- |        |     |         |     |       |  
- |________|     |_________|     |_______|  
+<pre>
+ +--------+     +---------+     +-------+
+ |        |     |         |     |       |
+ |  User  | ==> | Skinner | ==> |  GPU  |
+ |        |     |         |     |       |
+ +--------+     +---------+     +-------+
+</pre>
 
 1. Lancer le port forwarding: `ssh -L <port_notebook>:gpue<X>:<port_notebook> <user_lemans>@skinner`
    
 #### Pour les nantais
-
-  ________       _________       _________       _________       _______ 
- |        |     |         |     |         |     |         |     |       |
+<pre>
+ +--------+     +---------+     +---------+     +---------+     +-------+
  |        |     |         |     |         |     |         |     |       |
  |  User  | ==> | Transit | ==> | Bastion | ==> | Skinner | ==> |  GPU  |
  |        |     |         |     |         |     |         |     |       |
- |________|     |_________|     |_________|     |_________|     |_______|
+ +--------+     +---------+     +---------+     +---------+     +-------+
+</pre>
 
 1. Lancer le port forwarding: `ssh -L <port_notebook>:localhost:<port_notebook> <user_nantes>@bastion.etu.univ-nantes.fr -t ssh -L <port_notebook>:localhost:<port_notebook> <user_lemans>@skinner -t ssh -L <port_notebook>:localhost:<port_notebook> gpue<X>`
 
 ### A la casa
-
-  ________       _________       _________       _______ 
- |        |     |         |     |         |     |       |
+<pre>
+ +--------+     +---------+     +---------+     +-------+
  |        |     |         |     |         |     |       |
  |  User  | ==> | Transit | ==> | Skinner | ==> |  GPU  |
  |        |     |         |     |         |     |       |
- |________|     |_________|     |_________|     |_______|
+ +--------+     +---------+     +---------+     +-------+
+</pre>
 
 1. Lancer le port forwarding: `ssh -L <port_notebook>:localhost:<port_notebook> <user_lemans>@transit.univ-lemans.fr -t ssh -L <port_notebook>:localhost:<port_notebook> skinner -t ssh -L <port_notebook>:localhost:<port_notebook> gpue<X>`
 
 
 ## N.B
 
-* Dans le port forwarding je propose de mettre le même numéro de port par simplicité, il est possible de le changer entre chaque machine
+* Dans le port forwarding je propose de mettre le même numéro de port par simplicitée, il est possible de le changer entre chaque machine
 * Ajouter `-t './jupyter.sh <numero_port>'` à la fin du port forward pour démarrer le notebook *
 * Ajouter `-t './jupyter.sh stop'` à la fin du port forward pour stopper le notebook *
