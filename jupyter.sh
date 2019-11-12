@@ -15,8 +15,10 @@ if [ "$1" != "" ]; then
       echo $! > save_pid.txt
       TOKEN=`cat nohup.out | grep -o "token=[a-z0-9]*"| sed -n 1p`
       echo $TOKEN
+      exit 0
     fi
   fi
 else
   echo "Missing argument port: ./jupyter.sh <port>"
+  exit 1
 fi
